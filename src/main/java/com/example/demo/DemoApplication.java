@@ -30,16 +30,4 @@ public class DemoApplication {
 		return List.of("Hello", "World");
 	}
 
-	@GetMapping("/driver")
-	public List<Driver> driverList() {
-		return List.of(
-				new Driver(
-						1L,
-						"Navid",
-						"RC 350",
-						LocalDate.of(2021, Month.JUNE, 01),
-						29
-				)
-		);
-	}
 }
