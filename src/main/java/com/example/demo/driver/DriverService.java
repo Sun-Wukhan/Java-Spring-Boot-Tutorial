@@ -2,6 +2,7 @@ package com.example.demo.driver;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -41,5 +42,13 @@ public class DriverService {
                     "driver with id " + id + " does not exists");
         }
         driverRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void updateDriver(Long id,
+                             String name,
+                             String car) {
+        System.out.println("Im lazy bu you get the point");
+
     }
 }

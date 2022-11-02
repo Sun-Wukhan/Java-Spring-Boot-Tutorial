@@ -30,5 +30,13 @@ public class DriverController {
     public void deleteDriver(@PathVariable("driverid") Long id) {
         driverService.deleteDriver(id);
     }
+
+    @PutMapping(path = "{driverid}")
+    public void updateDriver(
+            @PathVariable("driverid") Long id,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String car) {
+        driverService.updateDriver(id, name, car);
+    }
 }
 
