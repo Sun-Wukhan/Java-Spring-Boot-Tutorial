@@ -3,6 +3,7 @@ package com.example.demo.driver;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -21,6 +22,7 @@ public class Driver {
     private String name;
     private String car;
     private LocalDate manufactureDate;
+    @Transient
     private Integer age;
 
     public Driver(){
@@ -30,23 +32,22 @@ public class Driver {
     public Driver(Long id,
                   String name,
                   String car,
-                  LocalDate manufactureDate,
-                  Integer age) {
+                  LocalDate manufactureDate) {
         this.id = id;
         this.name = name;
         this.car = car;
         this.manufactureDate = manufactureDate;
-        this.age = age;
+
     }
 
     public Driver(String name,
                   String car,
-                  LocalDate manufactureDate,
-                  Integer age) {
+                  LocalDate manufactureDate
+                  ) {
         this.name = name;
         this.car = car;
         this.manufactureDate = manufactureDate;
-        this.age = age;
+
     }
 
     public Long getId() {
@@ -82,7 +83,8 @@ public class Driver {
     }
 
     public Integer getAge() {
-        return age;
+
+        return Period.between(this.manufactureDate, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
@@ -96,7 +98,6 @@ public class Driver {
                 ", name='" + name + '\'' +
                 ", car='" + car + '\'' +
                 ", manufactureDate=" + manufactureDate +
-                ", age=" + age +
                 '}';
     }
 }

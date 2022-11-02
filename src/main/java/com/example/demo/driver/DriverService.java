@@ -19,14 +19,9 @@ public class DriverService {
 
     public List<Driver> getDrivers() {
                 return driverRepository.findAll();
+    }
 
-//        this was returning:
-//        new Driver(
-//                1L,
-//                "Navid",
-//                "RC 350",
-//                LocalDate.of(2021, Month.JUNE, 01),
-//                29
-//        )
+    public void addNewDriver(Driver driver) {
+        System.out.println(driver);
     }
 }
