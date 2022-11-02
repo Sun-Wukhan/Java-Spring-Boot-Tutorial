@@ -19,17 +19,27 @@ public class DriverService {
     }
 
     public List<Driver> getDrivers() {
-                return driverRepository.findAll();
+        return driverRepository.findAll();
     }
 
     public void addNewDriver(Driver driver) {
-       Optional<Driver> driverOptional =
-               driverRepository.findDriverByCar(driver.getCar());
-       if(driverOptional.isPresent()) {
-           throw new IllegalStateException("This Car is registered");
-       }
+        Optional<Driver> driverOptional =
+                driverRepository.findDriverByCar(driver.getCar());
+        if (driverOptional.isPresent()) {
+            throw new IllegalStateException("This Car is registered");
+        }
 
-       driverRepository.save(driver);
-       System.out.println(driver);
+        driverRepository.save(driver);
+        System.out.println(driver);
+    }
+
+    public void deleteDriver(Long id) {
+        boolean exists = driverRepository.existsById(id);
+
+        if (!exists) {
+            throw new IllegalStateException(
+                    "driver with id " + id + " does not exists");
+        }
+        driverRepository.deleteById(id);
     }
 }

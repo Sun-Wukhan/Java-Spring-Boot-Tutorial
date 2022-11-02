@@ -25,5 +25,10 @@ public class DriverController {
     public void registerDriver(@RequestBody Driver driver) {
         driverService.addNewDriver(driver);
     }
+
+    @DeleteMapping(path = "{driverid}")
+    public void deleteDriver(@PathVariable("driverid") Long id) {
+        driverService.deleteDriver(id);
+    }
 }
 
