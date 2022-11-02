@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DriverService {
@@ -22,6 +23,13 @@ public class DriverService {
     }
 
     public void addNewDriver(Driver driver) {
-        System.out.println(driver);
+       Optional<Driver> driverOptional =
+               driverRepository.findDriverByCar(driver.getCar());
+       if(driverOptional.isPresent()) {
+           throw new IllegalStateException("This Car is registered");
+       }
+
+       driverRepository.save(driver);
+       System.out.println(driver);
     }
 }
